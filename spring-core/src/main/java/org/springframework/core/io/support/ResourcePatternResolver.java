@@ -63,13 +63,8 @@ public interface ResourcePatternResolver extends ResourceLoader {
 	String CLASSPATH_ALL_URL_PREFIX = "classpath*:";
 
 	/**
-	 * Resolve the given location pattern into Resource objects.
-	 * <p>Overlapping resource entries that point to the same physical
-	 * resource should be avoided, as far as possible. The result should
-	 * have set semantics.
-	 * @param locationPattern the location pattern to resolve
-	 * @return the corresponding Resource objects
-	 * @throws IOException in case of I/O errors
+	 * 扩展了ResourceLoader的getResource方法,以支持根据路径匹配模式返回多个 Resource 实例
+	 * 同时，也新增了一种新的协议前缀 "classpath*:"，该协议前缀由其子类{@link PathMatchingResourcePatternResolver}负责实现
 	 */
 	Resource[] getResources(String locationPattern) throws IOException;
 

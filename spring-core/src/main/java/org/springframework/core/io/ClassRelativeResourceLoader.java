@@ -20,6 +20,8 @@ import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
+ * 可以根据给定的class 所在包或者所在包的子包下加载资源,也可以给定相对路径
+ *
  * {@link ResourceLoader} implementation that interprets plain resource paths
  * as relative to a given {@code java.lang.Class}.
  *
@@ -43,6 +45,11 @@ public class ClassRelativeResourceLoader extends DefaultResourceLoader {
 		setClassLoader(clazz.getClassLoader());
 	}
 
+	/**
+	 * 类可以通过重写getResourceByPath(String path)来返回和自身相关的资源类型
+	 *
+	 * ClassRelativeContextResource对象
+	 */
 	@Override
 	protected Resource getResourceByPath(String path) {
 		return new ClassRelativeContextResource(path, this.clazz);
